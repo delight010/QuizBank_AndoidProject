@@ -26,7 +26,7 @@ public class MyPageStudentActivity extends AppCompatActivity {
         tv_MyPage_student_DivisionEdit = findViewById(R.id.tv_MyPage_student_DivisionEdit);
         tv_MyPage_student_privacy = findViewById(R.id.tv_MyPage_student_privacy);
         tv_Mypage_student_Logout = findViewById(R.id.tv_Mypage_student_Logout);
-        tv_MyPage_student_DeleteMyAccount = findViewById(R.id.tv_Mypage_student_Logout);
+        tv_MyPage_student_DeleteMyAccount = findViewById(R.id.tv_MyPage_student_DeleteMyAccount);
 
         tv_MyPage_student_DivisionEdit.setOnClickListener(mOnClickListener);
         tv_MyPage_student_privacy.setOnClickListener(mOnClickListener);
