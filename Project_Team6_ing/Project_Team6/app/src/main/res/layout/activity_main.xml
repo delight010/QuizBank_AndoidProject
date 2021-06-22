@@ -24,10 +24,16 @@
         android:text="학생파트"
         />
     <Button
-        android:id="@+id/btn_mypage_start"
+        android:id="@+id/btn_mypage_teacher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="마이페이지"
+        android:text="마이페이지(선생님)"
+        />
+    <Button
+        android:id="@+id/btn_mypage_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마이페이지(학생)"
         />
 
 

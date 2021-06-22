@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AttendMainPageActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="프리미엄 구독"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="****을 이용해 주셔서 감사합니다! \n프리미엄 구독을 이용하시게 되면 갯수 제한 없이 문제집을\n등록하실 수 있게 됩니다.
+한달에 1번씩 결제를 하셔야 되며, \n이용요금은 3,000원(31일 기준)입니다. \n이용기간은 마이페이지에서도 확인하실 수 있습니다."
+        android:textSize="15dp"
+        android:padding="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- 중도 환불이 불가능합니다. \n- 카드로만 결제가 가능합니다."
+        android:textSize="15dp"
+        android:padding="10dp"
+        />
+
+
+    <Button
+        android:id="@+id/btn_AttendPage_Attend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="구독하러 가기"
+        android:backgroundTint="#009688"
+        android:layout_margin="2dp"
+        />
+
+</LinearLayout>
