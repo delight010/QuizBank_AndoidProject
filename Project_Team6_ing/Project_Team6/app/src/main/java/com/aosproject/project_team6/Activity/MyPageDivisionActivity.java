@@ -25,7 +25,9 @@ public class MyPageDivisionActivity extends AppCompatActivity {
 
     //변수
     String urlAddr = null;
-    String macIP, sid, sdivision;
+    String urlAddrUpdate = null;
+    String sid = "s01"; // 학생 sid값
+    String macIP, sdivision;
     String msg = "Message";
     ArrayList<StudentMyPage> members;
     StudentMyPageAdapter adapter;
@@ -39,9 +41,11 @@ public class MyPageDivisionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_page_division);
 
         Intent intent = getIntent();
-        sid = "s01";
         macIP = ShareVar.IPAddress;
+        //등록되어있는 정보 보여주기
         urlAddr = "http://" + macIP + ":8080/test/quizbank_MyPageStudent_DivisionSelect.jsp?sid=" + sid ;
+        //업데이트용 jsp
+        urlAddrUpdate = "http://" + macIP + ":8080/test/quizbank_MyPageStudent_DivisionUpdate.jsp?";
 
 
 
@@ -61,11 +65,11 @@ public class MyPageDivisionActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.btn_MyPage_Division_Edit:
                     Log.v(msg, "소속 등록/변경 버튼 Click");
-                    EditText editText = new EditText(MyPageDivisionActivity.this);
+                    EditText editText = new EditText(MyPageDivisionActivity.this); // 입력할 수 있는 EditText
 
                     AlertDialog.Builder dlg = new AlertDialog.Builder(MyPageDivisionActivity.this)
                             .setTitle("소속 입력")
-                            .setView(editText)
+                            .setView(editText) // AlertDialog에 입력할 수 있는 EditText 보여주기
                             .setIcon(R.mipmap.ic_launcher_round)
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
@@ -73,23 +77,29 @@ public class MyPageDivisionActivity extends AppCompatActivity {
                                     sdivision = editText.getText().toString();
                                     tv_division.setText(sdivision);
                                     // ******** 여기에 DB 관련 작업 내용도 넣어야 함!! ******
-                                    urlAddr = urlAddr + "sdivision=" + sdivision + "&sid=" + sid;
+                                    urlAddrUpdate = urlAddrUpdate + "sdivision=" + sdivision +"&sid=" + sid;
+
                                     String result = connectInsertData();
                                     if(result.equals("1")){
                                         // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
                                         Toast.makeText(MyPageDivisionActivity.this, "소속이 입력되었습니다", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }else  {/*에러걸렸으면*/
                                         Toast.makeText(MyPageDivisionActivity.this, "소속 입력이 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+                                        finish();
                                     }
+
                                 }
                             })
-                            .setNegativeButton("취소", mDivisionCancel);
+                            .setNegativeButton("취소", mDivisionEdit);
                             dlg.show();
+
                     break;
                 case R.id.btn_MyPage_Division_Remove:
                     AlertDialog.Builder dlg2 = new AlertDialog.Builder(MyPageDivisionActivity.this);
                             dlg2.setTitle("소속 삭제 확인")
                             .setIcon(R.mipmap.ic_launcher_round)
+                            .setMessage("소속을 삭제하시겠습니까?")
                             .setPositiveButton("삭제", mDivisionRemove)
                             .setNegativeButton("취소", mDivisionRemove)
                             .show();
@@ -99,10 +109,10 @@ public class MyPageDivisionActivity extends AppCompatActivity {
     };
 
     //Dialog Division Edit
-    DialogInterface.OnClickListener mDivisionCancel = new DialogInterface.OnClickListener() {
+    DialogInterface.OnClickListener mDivisionEdit = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            if(which == DialogInterface.BUTTON_NEGATIVE){
+            if(which == DialogInterface.BUTTON_NEGATIVE){ // 취소 눌렀을 때
 
             }else{
 
@@ -111,13 +121,23 @@ public class MyPageDivisionActivity extends AppCompatActivity {
         }
     };
 
-    //Dialog Division Edit
+    //Dialog Division Edit ( 학생 소속 내용 삭제 )
     DialogInterface.OnClickListener mDivisionRemove = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            if(which == DialogInterface.BUTTON_POSITIVE){
+            if(which == DialogInterface.BUTTON_POSITIVE){ //확인 눌렀을 때
                 tv_division.setText("");
                 //********여기에 DB 내용 넣어야 함 ********
+                sdivision = "  ";
+                urlAddrUpdate = urlAddrUpdate + "sdivision=" + sdivision +"&sid=" + sid;
+                String result = connectInsertData();
+                if(result.equals("1")){
+                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+                    Toast.makeText(MyPageDivisionActivity.this, "소속이 삭제되었습니다", Toast.LENGTH_SHORT).show();
+                }else  {/*에러걸렸으면*/
+                    Toast.makeText(MyPageDivisionActivity.this, "소속 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+                }
+                finish();
             }else{
 
             };
@@ -145,7 +165,7 @@ public class MyPageDivisionActivity extends AppCompatActivity {
     private String connectInsertData(){
         String result = null;
         try{
-            Workbook_NetworkTask networkTask = new Workbook_NetworkTask(MyPageDivisionActivity.this, urlAddr, "update");
+            Workbook_NetworkTask networkTask = new Workbook_NetworkTask(MyPageDivisionActivity.this, urlAddrUpdate, "update");
             Object obj = networkTask.execute().get();
             result = (String) obj;
         }catch (Exception e){

@@ -6,15 +6,28 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aosproject.project_team6.Common.ShareVar;
+import com.aosproject.project_team6.NetworkTask.Workbook_NetworkTask;
 import com.aosproject.project_team6.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MyPageTeacherActivity extends AppCompatActivity {
 
+    //변수
+    String urlAddr = null;
+    String urlAddrUpdate = null;
+    String tid = "t01"; // 선생님 tid값
+    String macIP, taddress;
     String msg = "Message";
+    String strToday = null;
 
     TextView tv_MyPage_teacher_name, tv_Mypage_teacher_AccountInfo, tv_Mypage_teacher_Attend,
             tv_MyPage_teacher_AddressEdit, tv_MyPage_teacher_privacy, tv_MyPage_teacher_version, tv_Mypage_teacher_Logout, tv_MyPage_teacher_DeleteMyAccount;
@@ -23,6 +36,12 @@ public class MyPageTeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page_teacher);
+
+        macIP = ShareVar.IPAddress;
+        //등록되어있는 정보 보여주기
+//        urlAddr = "http://" + macIP + ":8080/test/quizbank_MyPageTeacher_AddressSelect.jsp?tid=" + tid ;
+        //업데이트용 jsp
+        urlAddrUpdate = "http://" + macIP + ":8080/test/quizbank_MyPageTeacher_DeleteUpdate.jsp?";
 
         tv_MyPage_teacher_name = findViewById(R.id.tv_MyPage_teacher_name);
         tv_Mypage_teacher_AccountInfo = findViewById(R.id.tv_Mypage_teacher_AccountInfo);
@@ -92,6 +111,7 @@ public class MyPageTeacherActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             if(which == DialogInterface.BUTTON_POSITIVE){
 
+
             }else{
 
             };
@@ -103,7 +123,26 @@ public class MyPageTeacherActivity extends AppCompatActivity {
     DialogInterface.OnClickListener mDeleteAccount = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            Intent intent = null;
             if(which == DialogInterface.BUTTON_POSITIVE){
+                //오늘 날짜 계산
+                Date date = new Date();
+                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-M-dd"); // mm은 minute, M은 Month
+                strToday = sdformat.format(date).toString();
+                Log.v("Date", strToday);
+                Toast.makeText(MyPageTeacherActivity.this, strToday, Toast.LENGTH_SHORT).show();
+
+                //********여기에 DB 내용 넣어야 함 ********
+                urlAddrUpdate = urlAddrUpdate + "tdeleteupdate=" + strToday +"&tid=" + tid;
+                String result = connectInsertData();
+                if(result.equals("1")){
+                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴되었습니다", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(MyPageTeacherActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }else  {/*에러걸렸으면*/
+                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+                }
 
             }else{
 
@@ -113,5 +152,32 @@ public class MyPageTeacherActivity extends AppCompatActivity {
     };
 
 
+    //    private void connectGetdata() {
+//        try {
+//
+//            Workbook_NetworkTask networkTask = new Workbook_NetworkTask(MyPageDivisionActivity.this, urlAddr, "select");
+//            Object obj = networkTask.execute().get();
+//            members = (ArrayList<StudentMyPage>) obj;
+//
+//            adapter = new StudentAdapter(MyPageDivisionActivity.this, R.layout.activity_my_page_division, members);
+//            listView.setAdapter(adapter);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+    private String connectInsertData(){
+        String result = null;
+        try{
+            Workbook_NetworkTask networkTask = new Workbook_NetworkTask(MyPageTeacherActivity.this, urlAddrUpdate, "update");
+            Object obj = networkTask.execute().get();
+            result = (String) obj;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }

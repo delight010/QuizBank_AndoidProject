@@ -31,6 +31,7 @@
         />
 
     <TextView
+        android:id="@+id/tv_MyPage_teacher_Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="현재 입력된 주소입니다."

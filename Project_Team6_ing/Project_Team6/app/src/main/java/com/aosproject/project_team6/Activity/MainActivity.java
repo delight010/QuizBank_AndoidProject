@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.aosproject.project_team6.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.btn_mypage_teacher:
+                    //오늘 날짜 계산
+                    Date date = new Date();
+                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-mm-dd");
+                    String strDate = sdformat.format(date);
+                    Log.v("Date", strDate);
+                    Toast.makeText(MainActivity.this, strDate, Toast.LENGTH_SHORT).show();
                     intent = new Intent(MainActivity.this, MyPageTeacherActivity.class);
                     startActivity(intent);
                     break;

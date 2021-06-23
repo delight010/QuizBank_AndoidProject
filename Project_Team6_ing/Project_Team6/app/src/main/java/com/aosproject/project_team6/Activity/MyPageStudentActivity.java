@@ -102,4 +102,22 @@ public class MyPageStudentActivity extends AppCompatActivity {
         }
     };
 
+
+    //    private void connectGetdata() {
+//        try {
+//
+//            Workbook_NetworkTask networkTask = new Workbook_NetworkTask(MyPageDivisionActivity.this, urlAddr, "select");
+//            Object obj = networkTask.execute().get();
+//            members = (ArrayList<StudentMyPage>) obj;
+//
+//            adapter = new StudentAdapter(MyPageDivisionActivity.this, R.layout.activity_my_page_division, members);
+//            listView.setAdapter(adapter);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
 }
