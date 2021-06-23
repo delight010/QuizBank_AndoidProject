@@ -17,6 +17,8 @@ public class MyPageStudentActivity extends AppCompatActivity {
     TextView tv_MyPage_student_name, tv_MyPage_student_DivisionEdit, tv_MyPage_student_privacy, tv_MyPage_student_version,
             tv_Mypage_student_Logout, tv_MyPage_student_DeleteMyAccount;
 
+    String sid = "s01";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,9 @@ public class MyPageStudentActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.tv_MyPage_student_DivisionEdit:
                     intent = new Intent(MyPageStudentActivity.this, MyPageDivisionActivity.class);
+                    intent.putExtra("sid", sid);
                     startActivity(intent);
+
                     break;
                 case R.id.tv_MyPage_student_privacy:
                     break;

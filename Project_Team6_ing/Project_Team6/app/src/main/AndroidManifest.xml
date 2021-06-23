@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 인터넷 연결 확인-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,9 +13,12 @@
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Team6">
-        <activity android:name=".Activity.AttendMainPageActivity"></activity>
+        <activity android:name=".Activity.MyPageAddressWebViewActivity"></activity>
+        <activity android:name=".Activity.MyPageAddressEditActivity" />
+        <activity android:name=".Activity.AttendMainPageActivity" />
         <activity android:name=".Activity.MyPageDivisionActivity" />
         <activity android:name=".Activity.MyPageStudentActivity" />
         <activity android:name=".Activity.MyPageAddressActivity" />

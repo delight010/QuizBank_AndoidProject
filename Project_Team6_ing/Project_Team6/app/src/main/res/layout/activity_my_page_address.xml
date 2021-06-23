@@ -63,6 +63,11 @@
             />
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout_MyPage_AddressAPI"
         android:orientation="vertical"
@@ -78,10 +83,7 @@
             />
 
 
-            <RelativeLayout
-                android:id="@+id/map_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+
 
 
 
