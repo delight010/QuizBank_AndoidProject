@@ -1,5 +1,5 @@
 package com.aosproject.project_team6.Common;
 
 public class ShareVar {
-    public static String IPAddress ="121.167.125.120";
+    public static String IPAddress ="192.168.0.133";
 }

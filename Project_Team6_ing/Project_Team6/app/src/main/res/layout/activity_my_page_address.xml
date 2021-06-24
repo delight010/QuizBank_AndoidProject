@@ -64,30 +64,31 @@
             />
     </LinearLayout>
 
+    <WebView
+        android:id="@+id/webview_map"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        />
+
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout_MyPage_AddressAPI"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        >
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout_MyPage_AddressAPI"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="invisible"-->
+<!--        >-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="주소api페이지입니다."
-            />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="주소api페이지입니다."-->
+<!--            />-->
 
-
-
-
-
-
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </LinearLayout>

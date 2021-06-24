@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,8 +30,10 @@ public class MyPageAddressActivity extends AppCompatActivity {
     String tid = "t01"; // 선생님 tid값
     String macIP, taddress;
 
+
     TextView tv_address;
     Button btn_edit, btn_remove;
+    WebView webView_map;
     LinearLayout linearLayout_address;
 
     @Override
@@ -42,15 +47,30 @@ public class MyPageAddressActivity extends AppCompatActivity {
         //업데이트용 jsp
         urlAddrUpdate = "http://" + macIP + ":8080/test/quizbank_MyPageTeacher_AddressUpdate.jsp?";
 
+
         btn_edit = findViewById(R.id.btn_MyPage_AddressAPI_Edit);
         btn_remove = findViewById(R.id.btn_MyPage_AddressAPI_Remove);
         tv_address = findViewById(R.id.tv_MyPage_teacher_Address);
+        webView_map = findViewById(R.id.webview_map);
 //        linearLayout_address = findViewById(R.id.linearLayout_MyPage_AddressAPI);
 
 
         btn_edit.setOnClickListener(onClickListener);
         btn_remove.setOnClickListener(onClickListener);
 //        linearLayout_address.setOnClickListener(onClickListener);
+
+
+        //Web Setting
+        WebSettings webSettings = webView_map.getSettings();
+        webSettings.setJavaScriptEnabled(true); // JavaScript 사용 여부
+        webSettings.setBuiltInZoomControls(true); // 확대 축소 사용 여부
+        webSettings.setDisplayZoomControls(false); // 돋보기 사용 여부
+        webView_map.getSettings().setJavaScriptEnabled(true);
+        webView_map.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView_map.setWebChromeClient(new WebChromeClient()); // web client 를 chrome 으로 설정
+        webView_map.loadUrl("http://" + macIP + ":8080/test/quizbank_AddressWebView.jsp");
+
+
 
 //        MapView mapView = new MapView(this);
 //        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
@@ -107,7 +127,6 @@ public class MyPageAddressActivity extends AppCompatActivity {
                 }else  {/*에러걸렸으면*/
                     Toast.makeText(MyPageAddressActivity.this, "주소 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
                 }
-                finish();
             }else{
 
             };

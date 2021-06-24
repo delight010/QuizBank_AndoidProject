@@ -66,7 +66,6 @@ public class MyPageAddressEditActivity extends AppCompatActivity {
                 } else {/*에러걸렸으면*/
                     Toast.makeText(MyPageAddressEditActivity.this, "주소 입력이 실패되었습니다.", Toast.LENGTH_SHORT).show();
                 }
-                finish();
             }
         });
 

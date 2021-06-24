@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aosproject.project_team6.Adapter.StudentMyPageAdapter;
 import com.aosproject.project_team6.Bean.StudentMyPage;
 import com.aosproject.project_team6.Common.ShareVar;
 import com.aosproject.project_team6.NetworkTask.Workbook_NetworkTask;
@@ -30,7 +29,6 @@ public class MyPageDivisionActivity extends AppCompatActivity {
     String macIP, sdivision;
     String msg = "Message";
     ArrayList<StudentMyPage> members;
-    StudentMyPageAdapter adapter;
 
     TextView tv_division;
     Button btn_MyPage_Division_Edit, btn_MyPage_Division_Remove;
@@ -83,10 +81,9 @@ public class MyPageDivisionActivity extends AppCompatActivity {
                                     if(result.equals("1")){
                                         // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
                                         Toast.makeText(MyPageDivisionActivity.this, "소속이 입력되었습니다", Toast.LENGTH_SHORT).show();
-                                        finish();
+
                                     }else  {/*에러걸렸으면*/
                                         Toast.makeText(MyPageDivisionActivity.this, "소속 입력이 실패되었습니다.",  Toast.LENGTH_SHORT).show();
-                                        finish();
                                     }
 
                                 }
@@ -137,7 +134,6 @@ public class MyPageDivisionActivity extends AppCompatActivity {
                 }else  {/*에러걸렸으면*/
                     Toast.makeText(MyPageDivisionActivity.this, "소속 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
                 }
-                finish();
             }else{
 
             };

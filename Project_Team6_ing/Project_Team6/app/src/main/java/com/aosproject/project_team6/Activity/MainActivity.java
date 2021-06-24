@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_teacher, btn_student, btn_mypage_teacher, btn_mypage_student;
+    Button btn_teacher, btn_student, btn_mypage_teacher, btn_mypage_student, btn_auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         btn_teacher = findViewById(R.id.btn_teacher_start);
         btn_mypage_teacher = findViewById(R.id.btn_mypage_teacher);
         btn_mypage_student = findViewById(R.id.btn_mypage_student);
+        btn_auth = findViewById(R.id.btn_auth);
 
         btn_teacher.setOnClickListener(onClickListener);
         btn_mypage_teacher.setOnClickListener(onClickListener);
         btn_mypage_student.setOnClickListener(onClickListener);
+        btn_auth.setOnClickListener(onClickListener);
 
 
 
@@ -61,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.btn_mypage_student:
                     intent = new Intent(MainActivity.this, MyPageStudentActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.btn_auth:
+                    intent = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(intent);
                     break;
 
