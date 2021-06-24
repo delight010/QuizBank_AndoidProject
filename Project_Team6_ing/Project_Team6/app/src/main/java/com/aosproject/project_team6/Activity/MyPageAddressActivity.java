@@ -121,12 +121,12 @@ public class MyPageAddressActivity extends AppCompatActivity {
                 taddress = "";
                 urlAddrUpdate = urlAddrUpdate + "taddress=" + taddress +"&tid=" + tid;
                 String result = connectInsertData();
-                if(result.equals("1")){
-                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
-                    Toast.makeText(MyPageAddressActivity.this, "주소가 삭제되었습니다", Toast.LENGTH_SHORT).show();
-                }else  {/*에러걸렸으면*/
-                    Toast.makeText(MyPageAddressActivity.this, "주소 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
-                }
+//                if(result.equals("1")){
+//                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+//                    Toast.makeText(MyPageAddressActivity.this, "주소가 삭제되었습니다", Toast.LENGTH_SHORT).show();
+//                }else  {/*에러걸렸으면*/
+//                    Toast.makeText(MyPageAddressActivity.this, "주소 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+//                }
             }else{
 
             };

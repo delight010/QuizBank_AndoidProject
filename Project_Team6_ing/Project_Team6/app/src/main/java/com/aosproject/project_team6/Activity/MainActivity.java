@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btn_mypage_teacher:
                     //오늘 날짜 계산
                     Date date = new Date();
-                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-mm-dd");
+                    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
                     String strDate = sdformat.format(date);
                     Log.v("Date", strDate);
                     Toast.makeText(MainActivity.this, strDate, Toast.LENGTH_SHORT).show();

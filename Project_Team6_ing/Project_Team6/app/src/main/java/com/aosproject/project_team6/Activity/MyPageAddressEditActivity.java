@@ -26,12 +26,14 @@ public class MyPageAddressEditActivity extends AppCompatActivity {
     String urlAddr = null;
     String urlAddrUpdate = null;
     String tid = "t01"; // 선생님 tid값
-    String macIP, taddress;
+    String macIP, taddress1, taddress2;
 
     WebView webView;
     TextView tv_mypage_addressEdit1;
     EditText et_mypage_addressEdit2;
     Button btn_Mypage_AddressEdit_OK, btn_Mypage_AddressEdit_Cancel;
+
+    Intent intent = null;
 
 
     @Override
@@ -56,16 +58,19 @@ public class MyPageAddressEditActivity extends AppCompatActivity {
         btn_Mypage_AddressEdit_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                taddress = tv_mypage_addressEdit1.getText().toString() + et_mypage_addressEdit2.getText().toString();
+                taddress1 = tv_mypage_addressEdit1.getText().toString();
+                taddress2 = et_mypage_addressEdit2.getText().toString();
                 //********여기에 DB 내용 넣어야 함 ********
-                urlAddrUpdate = urlAddrUpdate + "taddress=" + taddress + "&tid=" + tid;
+                urlAddrUpdate = urlAddrUpdate + "taddress1=" + taddress1 +  "&taddress2=" + taddress2 + "&tid=" + tid;
                 String result = connectInsertData();
-                if (result.equals("1")) {
-                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
-                    Toast.makeText(MyPageAddressEditActivity.this, "주소가 입력되었습니다", Toast.LENGTH_SHORT).show();
-                } else {/*에러걸렸으면*/
-                    Toast.makeText(MyPageAddressEditActivity.this, "주소 입력이 실패되었습니다.", Toast.LENGTH_SHORT).show();
-                }
+//                if (result.equals("1")) {
+//                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+//                    Toast.makeText(MyPageAddressEditActivity.this, "주소가 입력되었습니다", Toast.LENGTH_SHORT).show();
+//                } else {/*에러걸렸으면*/
+//                    Toast.makeText(MyPageAddressEditActivity.this, "주소 입력이 실패되었습니다.", Toast.LENGTH_SHORT).show();
+//                }
+                intent = new Intent(MyPageAddressEditActivity.this, MyPageStudentActivity.class);
+                startActivity(intent);
             }
         });
 

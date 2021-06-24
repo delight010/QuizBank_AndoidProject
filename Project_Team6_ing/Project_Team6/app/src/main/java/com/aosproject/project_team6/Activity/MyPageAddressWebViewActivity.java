@@ -59,8 +59,10 @@ public class MyPageAddressWebViewActivity extends AppCompatActivity {
 
 
         webView.setWebViewClient(new WebViewClient() {
+
             @Override
             public void onPageFinished(WebView view, String url) {
+
                 webView.loadUrl("javascript:sample2_execDaumPostcode();");
             }
         });

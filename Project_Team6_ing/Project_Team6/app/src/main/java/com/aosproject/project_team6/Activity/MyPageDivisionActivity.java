@@ -78,13 +78,13 @@ public class MyPageDivisionActivity extends AppCompatActivity {
                                     urlAddrUpdate = urlAddrUpdate + "sdivision=" + sdivision +"&sid=" + sid;
 
                                     String result = connectInsertData();
-                                    if(result.equals("1")){
-                                        // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
-                                        Toast.makeText(MyPageDivisionActivity.this, "소속이 입력되었습니다", Toast.LENGTH_SHORT).show();
-
-                                    }else  {/*에러걸렸으면*/
-                                        Toast.makeText(MyPageDivisionActivity.this, "소속 입력이 실패되었습니다.",  Toast.LENGTH_SHORT).show();
-                                    }
+                                    onDestroy();
+//                                    if(result.equals("1")){
+//                                        // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+//                                        Toast.makeText(MyPageDivisionActivity.this, "소속이 입력되었습니다", Toast.LENGTH_SHORT).show();
+//                                    }else  {/*에러걸렸으면*/
+//                                        Toast.makeText(MyPageDivisionActivity.this, "소속 입력이 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+//                                    }
 
                                 }
                             })
@@ -128,12 +128,13 @@ public class MyPageDivisionActivity extends AppCompatActivity {
                 sdivision = "  ";
                 urlAddrUpdate = urlAddrUpdate + "sdivision=" + sdivision +"&sid=" + sid;
                 String result = connectInsertData();
-                if(result.equals("1")){
-                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
-                    Toast.makeText(MyPageDivisionActivity.this, "소속이 삭제되었습니다", Toast.LENGTH_SHORT).show();
-                }else  {/*에러걸렸으면*/
-                    Toast.makeText(MyPageDivisionActivity.this, "소속 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
-                }
+                onDestroy();
+//                if(result.equals("1")){
+//                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+//                    Toast.makeText(MyPageDivisionActivity.this, "소속이 삭제되었습니다", Toast.LENGTH_SHORT).show();
+//                }else  {/*에러걸렸으면*/
+//                    Toast.makeText(MyPageDivisionActivity.this, "소속 삭제가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+//                }
             }else{
 
             };

@@ -27,7 +27,7 @@ public class MyPageTeacherActivity extends AppCompatActivity {
     String tid = "t01"; // 선생님 tid값
     String macIP, taddress;
     String msg = "Message";
-    String strToday = null;
+    String tdeletedate = null;
 
     TextView tv_MyPage_teacher_name, tv_Mypage_teacher_AccountInfo, tv_Mypage_teacher_Attend,
             tv_MyPage_teacher_AddressEdit, tv_MyPage_teacher_privacy, tv_MyPage_teacher_version, tv_Mypage_teacher_Logout, tv_MyPage_teacher_DeleteMyAccount;
@@ -125,25 +125,26 @@ public class MyPageTeacherActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             Intent intent = null;
             if(which == DialogInterface.BUTTON_POSITIVE){
-                //오늘 날짜 계산
-                Date date = new Date();
-                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-M-dd"); // mm은 minute, M은 Month
-                strToday = sdformat.format(date).toString();
-                Log.v("Date", strToday);
-                Toast.makeText(MyPageTeacherActivity.this, strToday, Toast.LENGTH_SHORT).show();
+//                //오늘 날짜 계산
+//                Date date = new Date();
+//                SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd"); // mm은 minute, MM은 Month
+//                tdeletedate = sdformat.format(date).toString();
+//                Log.v("Date", tdeletedate);
+//                Toast.makeText(MyPageTeacherActivity.this, sdformat.toString(), Toast.LENGTH_SHORT).show();
 
                 //********여기에 DB 내용 넣어야 함 ********
-                urlAddrUpdate = urlAddrUpdate + "tdeleteupdate=" + strToday +"&tid=" + tid;
+                urlAddrUpdate = urlAddrUpdate + "tid=" + tid;
                 String result = connectInsertData();
-                if(result.equals("1")){
-                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
-                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴되었습니다", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(MyPageTeacherActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }else  {/*에러걸렸으면*/
-                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
-                }
-
+//                if(result.equals("1")){
+//                    // 정상인 경우 ( 1만 정상이라는 것은 jsp 에서 판단 할 수 있도록 만들 예정임. )
+//                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴되었습니다", Toast.LENGTH_SHORT).show();
+////                    intent = new Intent(MyPageTeacherActivity.this, MainActivity.class);
+////                    startActivity(intent);
+//                }else  {/*에러걸렸으면*/
+//                    Toast.makeText(MyPageTeacherActivity.this, "탈퇴가 실패되었습니다.",  Toast.LENGTH_SHORT).show();
+//                }
+                intent = new Intent(MyPageTeacherActivity.this, MainActivity.class);
+                startActivity(intent);
             }else{
 
             };
